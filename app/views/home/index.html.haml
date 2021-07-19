@@ -2,3 +2,15 @@
   .container
     %h1.display-4 Welcome Home
     %p.lead You've made it to the homepage
+    %p.lead
+      - if @user
+        And we know that you are #{@user.name}
+        %br
+        = link_to 'Go To Next Page', '#', :class => "btn btn-lg btn-primary"
+      - else
+        We don't know who you are yet?
+        %br
+        = form_with(model: User.new, url: users_path, method: :post) do |f|
+          = f.label :name
+          = f.text_field :name
+          = f.submit "Sign Up"
