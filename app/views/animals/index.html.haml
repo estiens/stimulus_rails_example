@@ -1,17 +1,21 @@
 .container
+  .col-8
+    %h1.display-3
+      Hi #{@current_user.name}
+    %p
+      You like #{@liked_animals.pluck(:name).map(&:pluralize).to_sentence}
+    %p
+      You don't like #{@disliked_animals.pluck(:name).map(&:pluralize).to_sentence}
   .row
     - @animals.each do |animal|
-      .col
-        .animal-icon.mx-5.my-5
-          .shadow.p-3.mb-5
-            = image_pack_tag(animal.image_path, width: '250px', class: animal_display_class(animal: animal, user: @current_user))
-          .like-tools.position-relative
-            - unless animal.liked_by_user?(user: @current_user)
-              .position-absolute.bottom-0.start-0
-                .hvr-icon-hang.text-success
-                  %i.fas.fa-2x.fa-thumbs-up.hvr-icon
-            - unless animal.disliked_by_user?(user: @current_user)
-              .position-absolute.bottom-0.end-0
-                .hvr-icon-hang.text-danger
-                  %i.fas.fa-2x.fa-thumbs-down.hvr-icon
+      .col{data:
+            {
+              controller: 'likeit',
+              likeit_likepath_value: like_animal_path(animal),
+              likeit_dislikepath_value: dislike_animal_path(animal),
+              likeit_resetpath_value: reset_animal_path(animal)
+            }
+        }
+        .animal-icon.shadow.p-3.mb-5.mx-5.my-5{data: {likeit_target: 'display'} }
+          = render partial: 'animals/display', locals: { animal: animal, user: @current_user }
 

@@ -3,8 +3,8 @@
     %h1.display-4 Welcome Home
     %p.lead You've made it to the homepage
     %p.lead
-      - if @user
-        And we know that you are #{@user.name}
+      - if @current_user
+        And we know that you are #{@current_user.name}
         %br
         = link_to 'Go Pick Animals', animals_path, :class => "btn btn-lg btn-primary"
       - else

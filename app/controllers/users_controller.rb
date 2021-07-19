@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    puts params
     @user = User.create(name: params.dig(:user, :name))
     session[:user_id] = @user.id if @user.save
 

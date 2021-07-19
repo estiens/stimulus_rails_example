@@ -1,0 +1,15 @@
+.position-relative
+  .position-absolute.top-0.end-0
+    .hvr-icon-hang.text-primary
+      %i.fas.fa-trash.hvr-icon{data: { action: 'click->likeit#reset' }  }
+.animal_image.mb-3
+  = image_pack_tag(animal.image_path, width: '250px', class: animal_display_class(animal: animal, user: user))
+.position-relative
+  - unless animal.liked_by_user?(user: user)
+    .position-absolute.bottom-0.start-0{data: { action: 'click->likeit#like' }  }
+      .hvr-icon-hang.text-success
+        %i.fas.fa-2x.fa-thumbs-up.hvr-icon
+  - unless animal.disliked_by_user?(user: user)
+    .position-absolute.bottom-0.end-0{data: { action: 'click->likeit#dislike' } }
+      .hvr-icon-hang.text-danger
+        %i.fas.fa-2x.fa-thumbs-down.hvr-icon
