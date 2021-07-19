@@ -6,7 +6,7 @@
       - if @user
         And we know that you are #{@user.name}
         %br
-        = link_to 'Go To Next Page', '#', :class => "btn btn-lg btn-primary"
+        = link_to 'Go Pick Animals', animals_path, :class => "btn btn-lg btn-primary"
       - else
         We don't know who you are yet?
         %br

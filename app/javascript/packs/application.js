@@ -16,3 +16,7 @@ ActiveStorage.start()
 import "controllers"
 
 import '../stylesheets/application'
+import "@fortawesome/fontawesome-free/css/all"
+import "hover.css/css/hover-min.css"
+
+require.context('../images', true)
